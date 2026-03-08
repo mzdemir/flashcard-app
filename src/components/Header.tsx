@@ -24,11 +24,10 @@ export default function Header({view, setView}: Props) {
 	return (
 		<header className="flex items-center justify-between">
 			<img className="my-1" src="images/logo-small.svg" alt="Logo" />
-			<nav className="relative text-preset-4 font-semibold bg-neutral-0 flex gap-1 p-1 border rounded-full overflow-hidden shadow-1">
+			<nav className="relative text-preset-4 font-semibold bg-neutral-0 flex gap-1 p-1 border border-color rounded-full overflow-hidden shadow-1">
 				<div
 					style={{width: sliderStyle.width, left: sliderStyle.left}}
-					className="absolute top-1 bottom-1 bg-yellow-500 border rounded-full transition-all
-					duration-300 ease-in-out"></div>
+					className="absolute top-1 bottom-1 bg-yellow-500 border border-color rounded-full transition-all duration-300 ease-in-out"></div>
 
 				<button
 					ref={studyRef}

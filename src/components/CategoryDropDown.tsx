@@ -1,16 +1,47 @@
+import {CardContext} from "../App"
+import {FiltersContext} from "./FlashCardContainer"
+import {useContext, useState} from "react"
+
 export default function CategoryDropDown() {
+	const {flashcards} = useContext(CardContext)
+	const [showDropdown, setShowDropdown] = useState(false)
+	const {setFilters} = useContext(FiltersContext)
+
 	// prettier-ignore
+	const categories = flashcards
+		.map((card) => card.category)
+		.reduce((acc, curr) => {
+			acc[curr] = (acc[curr] || 0) + 1
+			return acc
+		}, {} as Record<string, number>)
+
+	function getFilters(event: React.ChangeEvent<HTMLInputElement>) {
+		const value = event.target.value
+		setFilters((prev) => (prev.includes(value) ? prev.filter((f) => f !== value) : [...prev, value]))
+	}
+
 	return (
-    <div>
-      <div>{/* select-wrapper */}
-        <button className="flex items-center gap-2 px-4 py-3 border border-neutral-900 rounded-full">	{/* select-trigger */}
-          <span>All Categories</span>
-          <img src="/images/icon-chevron-down.svg" aria-hidden="true" />
-        </button>
-      </div>
-      <div>{/* custom options */}
-        <span></span>
-			</div>
-    </div>
-  )
+		<div className="relative">
+			<button
+				onClick={() => setShowDropdown((prev) => !prev)}
+				className="flex items-center gap-2 px-4 py-3 border border-color rounded-full">
+				<span>All Categories</span>
+				<img src="/images/icon-chevron-down.svg" aria-hidden="true" />
+			</button>
+
+			<form
+				className={`${!showDropdown && "hidden"} absolute mt-2 grid bg-neutral-0 z-10 overflow-hidden text-sm/[1.2] border rounded-lg font-medium text-nowrap shadow-3`}>
+				{Object.entries(categories)
+					.sort()
+					.map(([cate, count]) => (
+						<label
+							key={cate}
+							className="flex items-center gap-2 hover:bg-neutral-100 py-2  px-4 cursor-pointer border-b">
+							<input type="checkbox" id={cate} value={cate} onChange={(event) => getFilters(event)} />
+							{cate} <span className="text-neutral-600 -ml-1">({count})</span>
+						</label>
+					))}
+			</form>
+		</div>
+	)
 }
