@@ -1,0 +1,43 @@
+export default function Statics() {
+	return (
+		<section className="bg-neutral-0 grid gap-4 px-4 py-5 border border-r-3 border-b-3 rounded-2xl ">
+			<h2 className="text-preset-2 font-semibold">Study Statistics</h2>
+			<div className="grid grid-cols-[1fr_1fr_100px] border rounded-xl overflow-hidden">
+				<p className="text-preset-4 font-medium p-5 col-span-2 grid gap-8">
+					Total cards
+					<span className="text-preset-1 ">{8}</span>
+				</p>
+				<div className="grid place-items-center bg-blue-400 py-12 px-9.5 border-l">
+					<img src="/images/icon-stats-total.svg" aria-hidden="true" />
+				</div>
+			</div>
+			<div className="grid grid-cols-[1fr_1fr_100px] border rounded-xl overflow-hidden">
+				<p className="text-preset-4 font-medium p-5 col-span-2 grid gap-8">
+					Mastered
+					<span className="text-preset-1 ">{8}</span>
+				</p>
+				<div className="grid place-items-center bg-teal-400 py-12 px-9.5 border-l">
+					<img src="/images/icon-stats-mastered.svg" aria-hidden="true" />
+				</div>
+			</div>
+			<div className="grid grid-cols-[1fr_1fr_100px] border rounded-xl overflow-hidden">
+				<p className="text-preset-4 font-medium p-5 col-span-2 grid gap-8">
+					In Progress
+					<span className="text-preset-1 ">{8}</span>
+				</p>
+				<div className="grid place-items-center bg-pink-500 py-12 px-9.5 border-l">
+					<img src="/images/icon-stats-in-progress.svg" aria-hidden="true" />
+				</div>
+			</div>
+			<div className="grid grid-cols-[1fr_1fr_100px] border rounded-xl overflow-hidden">
+				<p className="text-preset-4 font-medium p-5 col-span-2 grid gap-8">
+					Not Started
+					<span className="text-preset-1 ">{8}</span>
+				</p>
+				<div className="grid place-items-center bg-pink-400 py-12 px-9.5 border-l">
+					<img src="/images/icon-stats-not-started.svg" aria-hidden="true" />
+				</div>
+			</div>
+		</section>
+	)
+}
