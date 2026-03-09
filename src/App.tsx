@@ -15,18 +15,20 @@ interface Card {
 interface CardContextType {
 	flashcards: Card[]
 	setFlashcards: React.Dispatch<React.SetStateAction<Card[]>>
+	setView: React.Dispatch<React.SetStateAction<string>>
 }
 
-const CardContext = createContext<CardContextType>({
-	flashcards: [],
-	setFlashcards: () => {},
-})
+const CardContext = createContext<CardContextType>({flashcards: [], setFlashcards: () => {}, setView: () => {}})
 
 export default function App() {
 	const [view, setView] = useState("study-mode")
 	const [flashcards, setFlashcards] = useState<Card[]>(() => {
-		const saved = localStorage.getItem("flashcards")
-		return saved ? JSON.parse(saved) : []
+		try {
+			const saved = localStorage.getItem("flashcards")
+			return saved ? JSON.parse(saved) : []
+		} catch {
+			return []
+		}
 	})
 
 	useEffect(() => {
@@ -45,14 +47,17 @@ export default function App() {
 	}, [flashcards])
 
 	return (
-		<CardContext.Provider value={{flashcards, setFlashcards}}>
-			<Header view={view} setView={setView} />
-			{view === "study-mode" ?
+		<CardContext.Provider value={{flashcards, setFlashcards, setView}}>
+			<Header
+				view={view}
+				setView={setView}
+			/>
+			{view === "study-mode" ? (
 				<>
 					<FlashCardContainer />
 					<Statics />
 				</>
-			:	null}
+			) : null}
 		</CardContext.Provider>
 	)
 }

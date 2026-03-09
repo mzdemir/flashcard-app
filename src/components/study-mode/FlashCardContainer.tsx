@@ -6,6 +6,7 @@ import FlashCardActions from "./FlashCardActions"
 import {type Card} from "../../types"
 import {CardContext} from "../../App"
 import {useState, useContext, useMemo} from "react"
+import EmptyState from "./EmptyState"
 
 function shuffleArray(array: Card[]) {
 	const shuffled = [...array]
@@ -23,17 +24,27 @@ export default function FlashCardContainer() {
 
 	const [filters, setFilters] = useState<string[]>([])
 	const [shuffle, setShuffle] = useState(false)
+	const [isHideMastered, setIsHideMastered] = useState(false)
 	const [currentCard, setCurrentCard] = useState<Card | null>(null)
 	const [currentCardIndex, setCurrentCardIndex] = useState(0)
 
-	const filteredCards = filters.length > 0 ? flashcards.filter((f) => filters.includes(f.category)) : flashcards
+	const filteredCards = useMemo(
+		() => (filters.length > 0 ? flashcards.filter(f => filters.includes(f.category)) : flashcards),
+		[filters, flashcards],
+	)
 
-	const shuffledCards = useMemo(() => {
-		return shuffle ? shuffleArray(filteredCards) : filteredCards
-	}, [filteredCards, shuffle])
+	const masteredHidden = useMemo(
+		() => (isHideMastered ? filteredCards.filter(f => f.knownCount !== 5) : filteredCards),
+		[filteredCards, isHideMastered],
+	)
+
+	const shuffledCards = useMemo(
+		() => (shuffle ? shuffleArray(masteredHidden) : masteredHidden),
+		[masteredHidden, shuffle],
+	)
 
 	function changeCard(index: number) {
-		setCurrentCardIndex((prev) => {
+		setCurrentCardIndex(prev => {
 			const next = prev + index
 			if (next < 0) return 0
 			if (next >= shuffledCards.length) return prev
@@ -42,17 +53,34 @@ export default function FlashCardContainer() {
 	}
 
 	return (
-		<section className="bg-neutral-0 grid gap-4 px-4 rounded-2xl border border-color border-r-3 border-b-3">
-			<FlashCardHeader setShuffle={setShuffle} setFilters={setFilters} />
-			<hr className="-mx-4 -mbs-1" />
-			<FlashCard
-				currentCard={currentCard}
-				setCurrentCard={setCurrentCard}
-				shuffledCards={shuffledCards}
-				currentCardIndex={currentCardIndex}
+		<section className="bg-neutral-0 grid  gap-4 px-4 rounded-2xl border border-color border-r-3 border-b-3">
+			<FlashCardHeader
+				setShuffle={setShuffle}
+				setFilters={setFilters}
+				setIsHideMastered={setIsHideMastered}
 			/>
-			<FlashCardActions currentCard={currentCard} setFlashcards={setFlashcards} />
-			<FlashCardNav changeCard={changeCard} currentCardIndex={currentCardIndex} shuffledCards={shuffledCards} />
+			<hr className="-mx-4 -mbs-1" />
+			{masteredHidden && flashcards.length > 0 ? (
+				<>
+					<FlashCard
+						currentCard={currentCard}
+						setCurrentCard={setCurrentCard}
+						shuffledCards={shuffledCards}
+						currentCardIndex={currentCardIndex}
+					/>
+					<FlashCardActions
+						currentCard={currentCard}
+						setFlashcards={setFlashcards}
+					/>
+					<FlashCardNav
+						changeCard={changeCard}
+						currentCardIndex={currentCardIndex}
+						shuffledCards={shuffledCards}
+					/>
+				</>
+			) : (
+				<EmptyState />
+			)}
 		</section>
 	)
 }
