@@ -1,6 +1,6 @@
-import Header from "./components/Header"
-import Statics from "./components/Static"
-import FlashCardContainer from "./components/FlashCardContainer"
+import Header from "./components/study-mode/Header"
+import Statics from "./components/study-mode/Static"
+import FlashCardContainer from "./components/study-mode/FlashCardContainer"
 
 import {useState, useEffect, createContext} from "react"
 

@@ -1,0 +1,58 @@
+import FlashCardHeader from "./FlashCardHeader"
+import FlashCard from "./FlashCard"
+import FlashCardNav from "./FlashCardNav"
+import FlashCardActions from "./FlashCardActions"
+
+import {type Card} from "../../types"
+import {CardContext} from "../../App"
+import {useState, useContext, useMemo} from "react"
+
+function shuffleArray(array: Card[]) {
+	const shuffled = [...array]
+	for (let i = shuffled.length - 1; i > 0; i--) {
+		const randomIndex = Math.floor(Math.random() * (i + 1))
+		const current = shuffled[i]
+		shuffled[i] = shuffled[randomIndex]
+		shuffled[randomIndex] = current
+	}
+	return shuffled
+}
+
+export default function FlashCardContainer() {
+	const {flashcards, setFlashcards} = useContext(CardContext)
+
+	const [filters, setFilters] = useState<string[]>([])
+	const [shuffle, setShuffle] = useState(false)
+	const [currentCard, setCurrentCard] = useState<Card | null>(null)
+	const [currentCardIndex, setCurrentCardIndex] = useState(0)
+
+	const filteredCards = filters.length > 0 ? flashcards.filter((f) => filters.includes(f.category)) : flashcards
+
+	const shuffledCards = useMemo(() => {
+		return shuffle ? shuffleArray(filteredCards) : filteredCards
+	}, [filteredCards, shuffle])
+
+	function changeCard(index: number) {
+		setCurrentCardIndex((prev) => {
+			const next = prev + index
+			if (next < 0) return 0
+			if (next >= shuffledCards.length) return prev
+			return next
+		})
+	}
+
+	return (
+		<section className="bg-neutral-0 grid gap-4 px-4 rounded-2xl border border-color border-r-3 border-b-3">
+			<FlashCardHeader setShuffle={setShuffle} setFilters={setFilters} />
+			<hr className="-mx-4 -mbs-1" />
+			<FlashCard
+				currentCard={currentCard}
+				setCurrentCard={setCurrentCard}
+				shuffledCards={shuffledCards}
+				currentCardIndex={currentCardIndex}
+			/>
+			<FlashCardActions currentCard={currentCard} setFlashcards={setFlashcards} />
+			<FlashCardNav changeCard={changeCard} currentCardIndex={currentCardIndex} shuffledCards={shuffledCards} />
+		</section>
+	)
+}

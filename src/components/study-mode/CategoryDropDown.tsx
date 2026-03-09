@@ -1,11 +1,13 @@
-import {CardContext} from "../App"
-import {FiltersContext} from "./FlashCardContainer"
+import {CardContext} from "../../App"
 import {useContext, useState} from "react"
 
-export default function CategoryDropDown() {
+type Props = {
+	setFilters: React.Dispatch<React.SetStateAction<string[]>>
+}
+
+export default function CategoryDropDown({setFilters}: Props) {
 	const {flashcards} = useContext(CardContext)
 	const [showDropdown, setShowDropdown] = useState(false)
-	const {setFilters} = useContext(FiltersContext)
 
 	// prettier-ignore
 	const categories = flashcards
@@ -24,7 +26,7 @@ export default function CategoryDropDown() {
 		<div className="relative">
 			<button
 				onClick={() => setShowDropdown((prev) => !prev)}
-				className="flex items-center gap-2 px-4 py-3 border border-color rounded-full">
+				className="flex items-center gap-2 px-4 py-3 border border-color rounded-full hover:bg-neutral-100 cursor-pointer focus-visible:border focus-blue">
 				<span>All Categories</span>
 				<img src="/images/icon-chevron-down.svg" aria-hidden="true" />
 			</button>
@@ -37,7 +39,13 @@ export default function CategoryDropDown() {
 						<label
 							key={cate}
 							className="flex items-center gap-2 hover:bg-neutral-100 py-2  px-4 cursor-pointer border-b">
-							<input type="checkbox" id={cate} value={cate} onChange={(event) => getFilters(event)} />
+							<input
+								type="checkbox"
+								className="focus-blue"
+								id={cate}
+								value={cate}
+								onChange={(event) => getFilters(event)}
+							/>
 							{cate} <span className="text-neutral-600 -ml-1">({count})</span>
 						</label>
 					))}

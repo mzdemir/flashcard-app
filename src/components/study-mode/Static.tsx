@@ -1,4 +1,4 @@
-import {CardContext} from "../App"
+import {CardContext} from "../../App"
 
 import {useContext} from "react"
 export default function Statics() {
