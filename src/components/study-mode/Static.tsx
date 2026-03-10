@@ -9,7 +9,9 @@ export default function Statics() {
 	const inProgress = flashcards?.length - (mastered + notStarted)
 
 	return (
-		<section className="bg-neutral-0 grid gap-4 px-4 py-5 border border-color border-r-3 border-b-3 rounded-2xl ">
+		<section
+			className="bg-neutral-0 grid gap-4 px-4 py-5 border border-color border-r-3 border-b-3 rounded-2xl"
+			aria-live="polite">
 			<h2 className="text-2xl/[1.2] font-semibold">Study Statistics</h2>
 			<div className="grid grid-cols-[1fr_1fr_100px] border border-color rounded-xl overflow-hidden">
 				<p className="text-base/[1.2] font-medium p-5 col-span-2 grid gap-8">

@@ -1,47 +1,20 @@
-import FlashCardHeader from "./FlashCardHeader"
+import FlashCardHeader from "../shared/FlashCardHeader"
 import FlashCard from "./FlashCard"
 import FlashCardNav from "./FlashCardNav"
 import FlashCardActions from "./FlashCardActions"
+import useGetFlashCard from "../../hooks/useGetFlashCard"
 
 import {type Card} from "../../types"
 import {CardContext} from "../../App"
-import {useState, useContext, useMemo} from "react"
+import {useContext, useState} from "react"
 import EmptyState from "./EmptyState"
-
-function shuffleArray(array: Card[]) {
-	const shuffled = [...array]
-	for (let i = shuffled.length - 1; i > 0; i--) {
-		const randomIndex = Math.floor(Math.random() * (i + 1))
-		const current = shuffled[i]
-		shuffled[i] = shuffled[randomIndex]
-		shuffled[randomIndex] = current
-	}
-	return shuffled
-}
 
 export default function FlashCardContainer() {
 	const {flashcards, setFlashcards} = useContext(CardContext)
+	const {shuffledCards, setShuffle, setFilters, setIsHideMastered, masteredHidden} = useGetFlashCard()
 
-	const [filters, setFilters] = useState<string[]>([])
-	const [shuffle, setShuffle] = useState(false)
-	const [isHideMastered, setIsHideMastered] = useState(false)
 	const [currentCard, setCurrentCard] = useState<Card | null>(null)
 	const [currentCardIndex, setCurrentCardIndex] = useState(0)
-
-	const filteredCards = useMemo(
-		() => (filters.length > 0 ? flashcards.filter(f => filters.includes(f.category)) : flashcards),
-		[filters, flashcards],
-	)
-
-	const masteredHidden = useMemo(
-		() => (isHideMastered ? filteredCards.filter(f => f.knownCount !== 5) : filteredCards),
-		[filteredCards, isHideMastered],
-	)
-
-	const shuffledCards = useMemo(
-		() => (shuffle ? shuffleArray(masteredHidden) : masteredHidden),
-		[masteredHidden, shuffle],
-	)
 
 	function changeCard(index: number) {
 		setCurrentCardIndex(prev => {
@@ -53,7 +26,9 @@ export default function FlashCardContainer() {
 	}
 
 	return (
-		<section className="bg-neutral-0 grid  gap-4 px-4 rounded-2xl border border-color border-r-3 border-b-3">
+		<section
+			className="bg-neutral-0 grid  gap-4 px-4 rounded-2xl border border-color border-r-3 border-b-3"
+			aria-live="assertive">
 			<FlashCardHeader
 				setShuffle={setShuffle}
 				setFilters={setFilters}

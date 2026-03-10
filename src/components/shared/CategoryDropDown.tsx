@@ -26,7 +26,7 @@ export default function CategoryDropDown({setFilters}: Props) {
 		<div className="relative">
 			<button
 				onClick={() => setShowDropdown(prev => !prev)}
-				className="flex items-center gap-2 px-4 py-3 border border-color rounded-full hover:bg-neutral-100 cursor-pointer focus-visible:border focus-blue">
+				className="flex items-center gap-2 px-4 py-3 bg-neutral-0 border rounded-full hover:bg-neutral-100 cursor-pointer focus-visible:border focus-blue">
 				<span>All Categories</span>
 				<img
 					src="/images/icon-chevron-down.svg"

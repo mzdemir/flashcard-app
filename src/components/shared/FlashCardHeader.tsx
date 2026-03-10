@@ -11,7 +11,7 @@ export default function FlashCardHeader({setShuffle, setFilters, setIsHideMaster
 		<header className="grid grid-cols-[auto_auto] gap-y-2.5 pbs-3 text-base/[1.2] font-medium">
 			<CategoryDropDown setFilters={setFilters} />
 			<button
-				className="flex items-center gap-2 justify-self-end px-4 py-3 border border-color rounded-full hover:bg-neutral-100 cursor-pointer focus-blue"
+				className="flex items-center gap-2 justify-self-end px-4 py-3 bg-neutral-0 border border-color rounded-full hover:bg-neutral-100 cursor-pointer focus-blue"
 				onClick={() => setShuffle(prev => !prev)}>
 				<img
 					src="/images/icon-shuffle.svg"
