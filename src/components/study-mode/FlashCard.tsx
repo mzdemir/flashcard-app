@@ -19,18 +19,15 @@ export default function FlashCard({currentCard, setCurrentCard, shuffledCards, c
 	return (
 		<div
 			onClick={() => setShowAnswer(prev => !prev)}
-			className={`${!showAnswer ? "bg-pink-400" : "bg-blue-400"} bg-[url(/images/pattern-flashcard-bg.svg)] bg-center h-90 grid place-items-center gap-4 px-4 py-5 border-2 border-color rounded-2xl shadow-2 relative cursor-pointer`}>
+			className={`${!showAnswer ? "bg-pink-400" : "bg-blue-400"} bg-[url(/images/pattern-flashcard-bg.svg)] bg-center h-90 grid place-items-center gap-4 px-4 py-5 border-2 border-color rounded-2xl shadow-2 relative cursor-pointer`}
+			aria-live="assertive">
 			<img
 				className="size-6 absolute top-10 right-7.5"
 				src={`/images/pattern-star-${!showAnswer ? "blue" : "pink"}.svg`}
 				aria-hidden="true"
 			/>
 
-			<img
-				className="size-8 absolute left-7 bottom-8"
-				src="/images/pattern-star-yellow.svg"
-				aria-hidden="true"
-			/>
+			<img className="size-8 absolute left-7 bottom-8" src="/images/pattern-star-yellow.svg" aria-hidden="true" />
 
 			<span className="text-xs/[1.2] font-medium bg-neutral-0 px-3 py-1.5 border border-color rounded-full shadow-0 self-start">
 				{currentCard?.category}

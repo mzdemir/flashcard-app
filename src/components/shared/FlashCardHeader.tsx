@@ -12,11 +12,9 @@ export default function FlashCardHeader({setShuffle, setFilters, setIsHideMaster
 			<CategoryDropDown setFilters={setFilters} />
 			<button
 				className="flex items-center gap-2 justify-self-end px-4 py-3 bg-neutral-0 border border-color rounded-full hover:bg-neutral-100 cursor-pointer focus-blue"
-				onClick={() => setShuffle(prev => !prev)}>
-				<img
-					src="/images/icon-shuffle.svg"
-					aria-hidden="true"
-				/>
+				onClick={() => setShuffle(prev => !prev)}
+				aria-label="Click to shuffle the flashcards">
+				<img src="/images/icon-shuffle.svg" aria-hidden="true" />
 				Shuffle
 			</button>
 			<label className="flex items-center gap-2 cursor-pointer">

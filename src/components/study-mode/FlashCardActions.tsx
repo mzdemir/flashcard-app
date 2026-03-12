@@ -4,7 +4,9 @@ type Props = {currentCard: Card | null; setFlashcards: React.Dispatch<React.SetS
 
 export default function FlashCardActions({currentCard, setFlashcards}: Props) {
 	return (
-		<div className="text-base[1.2] font-medium grid place-items-center gap-2.5 pb-2 relative after:absolute after:-bottom-4 after:-left-4 after:-right-4 after:h-0.5 after:bg-neutral-900">
+		<div
+			className="text-base[1.2] font-medium grid place-items-center gap-2.5 pb-2 relative after:absolute after:-bottom-4 after:-left-4 after:-right-4 after:h-0.5 after:bg-neutral-900"
+			aria-live="polite">
 			<button
 				className="flex gap-2 items-center justify-center w-full bg-yellow-500 py-3 rounded-full border border-color shadow-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-4 focus-visible:shadow-focus focus-visible:outline-none"
 				// prettier-ignore
@@ -13,10 +15,7 @@ export default function FlashCardActions({currentCard, setFlashcards}: Props) {
 						prev.map(card => (card.id === currentCard?.id ? {...card, knownCount: card.knownCount + 1} : card)))
 				}
 				disabled={(currentCard?.knownCount ?? 0) >= 5 ? true : false}>
-				<img
-					src="/images/icon-circle-check.svg"
-					aria-hidden="true"
-				/>
+				<img src="/images/icon-circle-check.svg" aria-hidden="true" />
 				{currentCard?.knownCount === 5 ? "Already Mastered" : "I Know This"}
 			</button>
 			<button
@@ -24,10 +23,7 @@ export default function FlashCardActions({currentCard, setFlashcards}: Props) {
 				onClick={() =>
 					setFlashcards(prev => prev.map(card => (card.id === currentCard?.id ? {...card, knownCount: 0} : card)))
 				}>
-				<img
-					src="/images/icon-reset.svg"
-					aria-hidden="true"
-				/>
+				<img src="/images/icon-reset.svg" aria-hidden="true" />
 				Reset Progress
 			</button>
 		</div>
