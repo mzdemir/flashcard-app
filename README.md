@@ -4,8 +4,9 @@ This is a solution to the [Flashcard app challenge on Frontend Mentor](https://w
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Live Site URL: https://mzdemir-flashcard-app.netlify.app/
+- Github Repo: https://github.com/mzdemir/flashcard-app
+- Solution URL: https://www.frontendmentor.io/solutions/flashcard-app-with-reactandtypescriptandtailwind-h1RzuDpQWg
 - Author Github - https://github.com/mzdemir
 - Frontend Mentor - https://www.frontendmentor.io/profile/mzdemir
 
