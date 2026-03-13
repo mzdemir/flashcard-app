@@ -1,4 +1,4 @@
-import Header from "./components/study-mode/Header"
+import Header from "./components/shared/Header"
 import Statics from "./components/study-mode/Static"
 import FlashCardContainer from "./components/study-mode/FlashCardContainer"
 
@@ -22,7 +22,7 @@ interface CardContextType {
 const CardContext = createContext<CardContextType>({flashcards: [], setFlashcards: () => {}, setView: () => {}})
 
 export default function App() {
-	const [view, setView] = useState("all-cards")
+	const [view, setView] = useState("study-mode")
 	const [flashcards, setFlashcards] = useState<Card[]>(() => {
 		try {
 			const saved = localStorage.getItem("flashcards")
@@ -49,10 +49,7 @@ export default function App() {
 
 	return (
 		<CardContext.Provider value={{flashcards, setFlashcards, setView}}>
-			<Header
-				view={view}
-				setView={setView}
-			/>
+			<Header view={view} setView={setView} />
 			{view === "study-mode" ? (
 				<>
 					<FlashCardContainer />

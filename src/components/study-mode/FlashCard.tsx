@@ -34,7 +34,8 @@ export default function FlashCard({currentCard, setCurrentCard, shuffledCards, c
 			</span>
 			<div
 				className={`flex items-stretch gap-3 transition-all duration-500 ${showAnswer ? " flex-col-reverse" : "flex flex-col"}`}>
-				<p className={`${!showAnswer ? "text-2xl/[1.2]" : "text-xl/[1.2]"} font-bold text-center`}>
+				<p
+					className={`${!showAnswer ? "text-2xl/[1.2]" : "text-xl/[1.2]"} font-bold text-center xs:text-[2rem]/[1.2] lg:text-[2.5rem]/[1.2]`}>
 					{!showAnswer ? currentCard?.question : currentCard?.answer}
 				</p>
 				<p className="text-base[1.2] font-medium text-center opacity-80">

@@ -5,10 +5,10 @@ type Props = {currentCard: Card | null; setFlashcards: React.Dispatch<React.SetS
 export default function FlashCardActions({currentCard, setFlashcards}: Props) {
 	return (
 		<div
-			className="text-base[1.2] font-medium grid place-items-center gap-2.5 pb-2 relative after:absolute after:-bottom-4 after:-left-4 after:-right-4 after:h-0.5 after:bg-neutral-900"
+			className="text-base[1.2] font-medium grid place-items-center gap-2.5 pb-2 relative after:absolute after:-bottom-4 after:-left-4 after:-right-4 after:h-0.5 after:bg-neutral-900 xs:grid-cols-2 xs:gap-5 xs:justify-center"
 			aria-live="polite">
 			<button
-				className="flex gap-2 items-center justify-center w-full bg-yellow-500 py-3 rounded-full border border-color shadow-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-4 focus-visible:shadow-focus focus-visible:outline-none"
+				className="flex gap-2 items-center justify-center w-full bg-yellow-500 px-5 py-3 rounded-full border border-color shadow-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-4 focus-visible:shadow-focus focus-visible:outline-none xs:w-fit xs:ml-auto"
 				// prettier-ignore
 				onClick={() =>
 					setFlashcards(prev =>
@@ -19,7 +19,7 @@ export default function FlashCardActions({currentCard, setFlashcards}: Props) {
 				{currentCard?.knownCount === 5 ? "Already Mastered" : "I Know This"}
 			</button>
 			<button
-				className="flex gap-2 items-center justify-center w-full py-3 rounded-full border border-color shadow-2 cursor-pointer hover:shadow-4 focus-visible:shadow-focus focus-visible:outline-none"
+				className="flex gap-2 items-center justify-center w-full px-5 py-3 rounded-full border border-color shadow-2 cursor-pointer hover:shadow-4 focus-visible:shadow-focus focus-visible:outline-none xs:w-fit xs:mr-auto"
 				onClick={() =>
 					setFlashcards(prev => prev.map(card => (card.id === currentCard?.id ? {...card, knownCount: 0} : card)))
 				}>

@@ -10,13 +10,15 @@ export default function Statics() {
 
 	return (
 		<section
-			className="bg-neutral-0 grid gap-4 px-4 py-5 border border-color border-r-3 border-b-3 rounded-2xl"
+			className="bg-neutral-0 grid gap-4 px-4 py-5 border border-color border-r-3 border-b-3 rounded-2xl xs:grid-cols-2 lg:grid-cols-1 "
 			aria-live="polite">
-			<h2 className="text-2xl/[1.2] font-semibold">Study Statistics</h2>
+			<h2 className="text-2xl/[1.2] font-semibold xs:col-span-2 lg:col-span-1">Study Statistics</h2>
 			<div className="grid grid-cols-[1fr_1fr_100px] border border-color rounded-xl overflow-hidden">
 				<p className="text-base/[1.2] font-medium p-5 col-span-2 grid gap-8">
 					Total cards
-					<span className="text-2xl/[1.2] font-bold" aria-live="polite">
+					<span
+						className="text-[1.5rem]/[1.2] font-bold xs:text-[2rem]/[1.2] lg:text-[2.5rem]/[1.2]"
+						aria-live="polite">
 						{flashcards ? flashcards.length : 0}
 					</span>
 				</p>
@@ -27,7 +29,9 @@ export default function Statics() {
 			<div className="grid grid-cols-[1fr_1fr_100px] border border-color rounded-xl overflow-hidden">
 				<p className="text-base/[1.2] font-medium p-5 col-span-2 grid gap-8">
 					Mastered
-					<span className="text-2xl/[1.2] font-bold" aria-live="polite">
+					<span
+						className="text-[1.5rem]/[1.2] font-bold xs:text-[2rem]/[1.2] lg:text-[2.5rem]/[1.2]"
+						aria-live="polite">
 						{mastered ? mastered : 0}
 					</span>
 				</p>
@@ -38,7 +42,9 @@ export default function Statics() {
 			<div className="grid grid-cols-[1fr_1fr_100px] border border-color rounded-xl overflow-hidden">
 				<p className="text-base/[1.2] font-medium p-5 col-span-2 grid gap-8">
 					In Progress
-					<span className="text-2xl/[1.2] font-bold" aria-live="polite">
+					<span
+						className="text-[1.5rem]/[1.2] font-bold xs:text-[2rem]/[1.2] lg:text-[2.5rem]/[1.2]"
+						aria-live="polite">
 						{inProgress ? inProgress : 0}
 					</span>
 				</p>
@@ -49,7 +55,9 @@ export default function Statics() {
 			<div className="grid grid-cols-[1fr_1fr_100px] border border-color rounded-xl overflow-hidden">
 				<p className="text-base/[1.2] font-medium p-5 col-span-2 grid gap-8">
 					Not Started
-					<span className="text-2xl/[1.2] font-bold" aria-live="polite">
+					<span
+						className="text-[1.5rem]/[1.2] font-bold xs:text-[2rem]/[1.2] lg:text-[2.5rem]/[1.2]"
+						aria-live="polite">
 						{notStarted ? notStarted : 0}
 					</span>
 				</p>

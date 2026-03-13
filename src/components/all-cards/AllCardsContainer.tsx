@@ -19,7 +19,10 @@ export default function AllCardsContainer() {
 	return (
 		<>
 			<CreateCardForm action="create" displayModal={displayModal} setDisplayModal={setDisplayModal} />
-			<FlashCardHeader setShuffle={setShuffle} setFilters={setFilters} setIsHideMastered={setIsHideMastered} />
+
+			<div className="lg:col-span-3">
+				<FlashCardHeader setShuffle={setShuffle} setFilters={setFilters} setIsHideMastered={setIsHideMastered} />
+			</div>
 
 			{cardsToDisplay && cardsToDisplay.length > 0 ? (
 				<FlashCardsContainer cardsToDisplay={cardsToDisplay} setDisplayModal={setDisplayModal} />
@@ -35,7 +38,7 @@ export default function AllCardsContainer() {
 			{hasMoreItems && (
 				<button
 					onClick={() => setVisibleCardCount(prev => prev + cardsPerTime)}
-					className="bg-neutral-0 text-base/[1.2] font-medium w-fit m-auto px-5 py-3 border rounded-full shadow-2 cursor-pointer hover:shadow-4 focus-visible:shadow-focus focus-visible:outline-none">
+					className="bg-neutral-0 text-base/[1.2] font-medium w-fit m-auto px-5 py-3 border rounded-full shadow-2 cursor-pointer hover:shadow-4 focus-visible:shadow-focus focus-visible:outline-none lg:col-span-3">
 					Load More
 				</button>
 			)}

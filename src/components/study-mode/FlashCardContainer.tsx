@@ -25,9 +25,10 @@ export default function FlashCardContainer() {
 		})
 	}
 
+	//prettier-ignore
 	return (
 		<section
-			className="bg-neutral-0 grid  gap-4 px-4 rounded-2xl border border-color border-r-3 border-b-3"
+			className="bg-neutral-0 grid  gap-4 px-4 rounded-2xl border border-color border-r-3 border-b-3 lg:col-span-2"
 			aria-live="assertive">
 			<FlashCardHeader
 				setShuffle={setShuffle}

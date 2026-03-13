@@ -46,7 +46,7 @@ export default function CreateCardForm({action, displayModal, setDisplayModal}: 
 	return (
 		<form
 			onSubmit={addNewCard}
-			className="bg-neutral-0 p-5 rounded-2xl grid gap-4 text-base/[1.2] border border-r-4 border-b"
+			className="bg-neutral-0 p-5 rounded-2xl grid gap-4 text-base/[1.2] border border-r-4 border-b  lg:col-span-3"
 			ref={formRef}>
 			<label className="grid gap-2 font-medium">
 				Question

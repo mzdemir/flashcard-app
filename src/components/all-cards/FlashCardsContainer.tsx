@@ -11,16 +11,16 @@ export default function FlashCardsContainer({cardsToDisplay, setDisplayModal}: P
 	const [openMenuId, setOpenMenuId] = useState<string | null>(null)
 
 	return (
-		<section className="grid gap-5" aria-live="assertive">
+		<section className="grid gap-5 xs:grid-cols-2 lg:col-span-3 lg:grid-cols-3" aria-live="assertive">
 			{cardsToDisplay?.map(card => (
-				<div key={card.id} className=" bg-neutral-0 border rounded-2xl divide-y">
-					<h2 className="p-4 text-xl/[1.2] font-semibold">{card.question}</h2>
-					<div className="p-4 text-sm/[1.4] font-medium flex flex-col gap-1.5 min-h-31.5">
-						<span className=" opacity-60">Answer:</span>
-						<p className="">{card.answer}</p>
+				<div key={card.id} className="bg-neutral-0 border rounded-2xl flex flex-col">
+					<h2 className="p-4 text-xl/[1.2] font-semibold border-b">{card.question}</h2>
+					<div className="p-4 text-sm/[1.4] font-medium flex flex-col gap-1.5 flex-1 border-b">
+						<span className="opacity-60">Answer:</span>
+						<p>{card.answer}</p>
 					</div>
 					<div className="flex gap-2 justify-between px-4">
-						<div className="py-3.5 pr-2.5 self-start border-r w-min">
+						<div className="py-3.5 pr-2.5 self-start border-r w-min xs:w-fit">
 							<p className="text-xs/[1.3] tracking-[-3%] font-medium border px-3 py-1.5 rounded-full shadow-0">
 								{card.category}
 							</p>
