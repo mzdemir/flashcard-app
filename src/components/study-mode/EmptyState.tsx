@@ -11,7 +11,7 @@ export default function EmptyState() {
 			</div>
 			<button
 				className="font-medium border self-center w-fit px-5 py-3 rounded-full shadow-2"
-				onClick={() => setView("all-card")}>
+				onClick={() => setView("all-cards")}>
 				Go to All Cards
 			</button>
 		</div>

@@ -36,7 +36,7 @@ export default function FlashCardContainer() {
 				setIsHideMastered={setIsHideMastered}
 			/>
 			<hr className="-mx-4 -mbs-1" />
-			{masteredHidden && flashcards.length > 0 ? (
+			{masteredHidden.length > 0 && flashcards.length > 0 ? (
 				<>
 					<FlashCard
 						currentCard={currentCard}

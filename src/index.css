@@ -78,7 +78,7 @@ input[type="checkbox"]::before {
 	height: 1rem;
 	border-radius: 0.25rem;
 	background-color: var(--color-yellow-500);
-	background-image: url(/public/images/icon-check.svg);
+	background-image: url(/images/icon-check.svg);
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: 0.625rem;
