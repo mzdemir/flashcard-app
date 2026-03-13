@@ -23,7 +23,7 @@ export default function CategoryDropDown({setFilters}: Props) {
 	}
 
 	return (
-		<div className="relative">
+		<div className="relative self-center">
 			<button
 				onClick={() => setShowDropdown(prev => !prev)}
 				className="flex items-center gap-2 px-4 py-3 bg-neutral-0 border rounded-full hover:bg-neutral-100 cursor-pointer focus-visible:border focus-blue"
